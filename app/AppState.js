@@ -9,11 +9,16 @@ class ObservableAppState extends EventEmitter {
   /** @type {import('./models/Value.js').Value[]} */
   values = loadState('values', [Value])
 
+  // SECTION GLOBAL VARIABLES
+
+
+  // !SECTION GLOBAL VARIABLES
+
+
   // NOTE Used to load initial data
   init() {
 
   }
-
 }
 
 export const AppState = new Proxy(new ObservableAppState(), {
