@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
-import { VendrSnack } from "../models/VendrSnack.js";
+import { vendrService } from "../services/VendrService.js";
+import { Pop } from "../utils/Pop.js";
 import { setHTML } from "../utils/Writer.js";
 
 function _drawSnacks() {
@@ -9,38 +10,49 @@ function _drawSnacks() {
   setHTML('vendingMachine', contentHTML)
 }
 
-function _updateQty() {
-  console.log('update qty')
-  let contentHTML = '';
-
-  setHTML('itemQty', contentHTML)
+function _drawOnPurchase() {
+  _drawMonies();
 }
 
-function _updateMonies() {
+function _drawMonies() {
   console.log('update monies')
   let contentHTML = '';
+  let totalCredits = 0;
+  AppState.vendrCredits.forEach(credit => {
+    totalCredits += credit.qty;
+    let c = credit.qty;
+    while (c > 0) {
+      contentHTML += credit.creditImg
+      if (credit.type == 'cash-100') {
+        c -= 100;
+      } else {
+        c--;
+      }
+    }
+    setHTML('totalCredits', `$${totalCredits}`)
+  })
 
-  setHTML('visualMonies', contentHTML)
+  setHTML('cashFlow', contentHTML)
 }
 
-function _onPurchase() {
-  _updateMonies();
-  _updateQty();
+function _drawALL() {
+  _drawMonies()
+  _drawSnacks()
 }
 
 export class VendrController {
   constructor() {
-    console.log('Vendr Controller module loaded')
-    _drawSnacks();
+    Pop.success('Welcome to the Vendr Machine! 😎');
+    _drawALL();
   }
 
   addMonies() {
-    console.log('add monies')
+    vendrService.addMonies();
+    _drawMonies();
   }
 
-  spendMonies() {
-    console.log('add monies')
-
-    _onPurchase();
+  buySnack(snackName) {
+    vendrService.buySnack(snackName);
+    _drawMonies();
   }
 }

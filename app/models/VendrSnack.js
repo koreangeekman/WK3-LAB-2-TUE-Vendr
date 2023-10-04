@@ -11,9 +11,10 @@ export class VendrSnack {
   }
 
   get snackCard() {
+    console.log(this)
     return `
-        <div class="col-6 col-md-3" >
-          <div class="card shadow bg-primary text-white px-3">
+        <div class="col-6 col-md-3 p-3" >
+          <div class="btn card shadow bg-primary text-white px-3" onclick="app.VendrController.buySnack('${this.name}')">
             <span class="d-flex justify-content-between align-items-center">
               <p class="fs-3 fw-bold p-2">${this.name}</p>
               <p class="p-2 qty">Qty: ${this.qty}</p>

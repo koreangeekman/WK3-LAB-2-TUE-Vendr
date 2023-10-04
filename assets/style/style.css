@@ -4,7 +4,7 @@ p {
 }
 
 
-img {
+#vendingMachine img {
   height: 20dvh;
   width: 100%;
   object-fit: cover;
@@ -13,6 +13,22 @@ img {
 .cash {
   color: green;
   font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  line-height: 2rem;
+}
+
+.cashPlus {
+  color: black;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  line-height: 2rem;
+  border-radius: 2rem;
+}
+
+.cashPlus:hover {
+  color: green;
 }
 
 .qty {
