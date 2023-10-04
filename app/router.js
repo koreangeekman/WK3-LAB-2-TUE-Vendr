@@ -6,6 +6,6 @@ export const router = [
   {
     path: '',
     controller: VendrController,
-    view: null
+    view: VendrView
   }
 ]

@@ -4,18 +4,12 @@ import { Pop } from "../utils/Pop.js";
 import { setHTML } from "../utils/Writer.js";
 
 function _drawSnacks() {
-  console.log('draw snacks')
   let contentHTML = '';
   AppState.vendrSnacks.forEach(snack => contentHTML += snack.snackCard);
   setHTML('vendingMachine', contentHTML)
 }
 
-function _drawOnPurchase() {
-  _drawMonies();
-}
-
 function _drawMonies() {
-  console.log('update monies')
   let contentHTML = '';
   let totalCredits = 0;
   AppState.vendrCredits.forEach(credit => {
@@ -46,6 +40,10 @@ export class VendrController {
     _drawALL();
   }
 
+  addMonies100() {
+    vendrService.addMonies100();
+    _drawMonies();
+  }
   addMonies() {
     vendrService.addMonies();
     _drawMonies();
@@ -53,6 +51,6 @@ export class VendrController {
 
   buySnack(snackName) {
     vendrService.buySnack(snackName);
-    _drawMonies();
+    _drawALL();
   }
 }

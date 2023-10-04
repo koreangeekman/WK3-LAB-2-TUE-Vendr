@@ -1,6 +1,4 @@
 
-
-
 export class VendrSnack {
   constructor(data) {
     // console.log('Vendr Snack module loaded - creating object')
@@ -11,7 +9,7 @@ export class VendrSnack {
   }
 
   get snackCard() {
-    console.log(this)
+    // console.log(this)
     return `
         <div class="col-6 col-md-3 p-3" >
           <div class="btn card shadow bg-primary text-white px-3" onclick="app.VendrController.buySnack('${this.name}')">
